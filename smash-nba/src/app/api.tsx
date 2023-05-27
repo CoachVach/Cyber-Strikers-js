@@ -1,8 +1,6 @@
-
-
 import axios from 'axios';
 
-const fetchData = async () => {
+export const dataEquipos = async () => {
   try {
     const response = await axios.get('https://cyber-strikers-coachvach.vercel.app/rest/equipos');
     console.log("HOLA")
@@ -14,4 +12,14 @@ const fetchData = async () => {
   }
 };
 
-export default fetchData;
+export const dataCartas = async () => {
+  try {
+    const response = await axios.get('https://cyber-strikers-coachvach.vercel.app/rest/cartas');
+    console.log("HOLA")
+    console.log(response)
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};

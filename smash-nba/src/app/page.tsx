@@ -1,14 +1,15 @@
 
+import Inicio from './Components/Inicio';
 import CustomNavbar from './Components/Navbar';
+import TeamsComponent from './Components/TeamsComponent';
 
 export default function Home() {
   return (
-    <div className="container">
+    <div>
       <CustomNavbar />
-
-      <div >
-        <h1>SMASH NBA</h1>
-        <p>This is an example content below the navbar.</p>
+      <div className="container">
+        <Inicio/>
+        <TeamsComponent />
       </div>
     </div>
   );
