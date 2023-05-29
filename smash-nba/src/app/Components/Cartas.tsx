@@ -6,6 +6,8 @@ import Carrito from './Carrito';
 import { dataCartas } from '../api';
 import CustomNavbar from './Navbar';
 
+
+
 const ItemListComponent: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [cartItems, setCartItems] = useState<Item[]>([]);
