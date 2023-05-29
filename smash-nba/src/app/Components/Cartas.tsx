@@ -10,11 +10,23 @@ interface Item {
   costo: number;
   estadistica: number;
   categoria: string;
-  jugador_id: number;
-  deleted_at: string;
-  created_at: string;
-  updated_at: string;
+  jugador: {
+    id: number;
+    nombre: string;
+    apellido: string;
+    nacionalidad: string;
+    Nro_Camiseta: number;
+    posicion: string;
+    foto: string;
+    equipo: {
+      id: number;
+      ciudad: string;
+      nombre: string;
+      logo: string;
+    };
+  };
 }
+
 
 const ItemListComponent: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);

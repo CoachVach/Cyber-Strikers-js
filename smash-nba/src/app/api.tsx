@@ -14,7 +14,7 @@ export const dataEquipos = async () => {
 
 export const dataCartas = async () => {
   try {
-    const response = await axios.get('https://cyber-strikers-coachvach.vercel.app/rest/cartas');
+    const response = await axios.get('https://cyber-strikers-coachvach.vercel.app/rest/cartaConJugadorConEquipo');
     console.log("HOLA")
     console.log(response)
     return response.data;
