@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-interface Item {
+export interface Item {
   id: number;
   descripcion: string;
   costo: number;
@@ -15,9 +15,10 @@ interface Item {
 
 type ItemProps = {
   item: Item;
+  addToCart: (item: Item) => void;
 };
 
-const CartaContainer: React.FC<ItemProps> = ({ item }) => {
+const CartaContainer: React.FC<ItemProps> = ({ item, addToCart }) => {
   const { id, descripcion, costo, estadistica, categoria, jugador_id } = item;
 
   return (
@@ -35,6 +36,7 @@ const CartaContainer: React.FC<ItemProps> = ({ item }) => {
           <br />
           <strong>Jugador ID:</strong> {jugador_id}
         </Card.Text>
+        <button onClick={() => addToCart(item)}>Add to Cart</button>
       </Card.Body>
     </Card>
   );

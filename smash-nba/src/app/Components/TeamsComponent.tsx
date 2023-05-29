@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
-import dataEquipos from '../api';
+import {dataEquipos} from '../api';
 
 interface Item {
   id: number;
