@@ -1,7 +1,6 @@
-
 import { Item } from './CartaContainer';
-
-import React, { useState } from 'react';
+import React from 'react';
+import axios from 'axios';
 
 type CarritoProps = {
   cartItems: Item[];
@@ -19,22 +18,15 @@ const Carrito: React.FC<CarritoProps> = ({ cartItems, removeFromCart }) => {
         estado: 'Pendiente',
         fecha_pedido: new Date().toISOString(),
         fecha_entrega: new Date().toISOString(),
-        monto_total: calculateTotal(), // Replace this with your logic to calculate the total amount
+        monto_total: calculateTotal(),
         user_id: 26, // Replace with the actual user ID
-        cartas: cartItems.map(item => item.id), // Assuming `item.id` represents the carta's ID
+        cartas: cartItems.map(item => item.id),
       };
 
-      const response = await fetch('https://cyber-strikers-coachvach.vercel.app/rest/cargarPedido', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(pedidoData),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Pedido creado correctamente:', data.message);
+      const response = await axios.post('https://cyber-strikers-coachvach.vercel.app/rest/cargarPedido', pedidoData);
+      
+      if (response.status === 201) {
+        console.log('Pedido creado correctamente:', response.data.message);
         // Perform any additional actions after creating the pedido
       } else {
         console.error('Error al crear el pedido:', response.status);
