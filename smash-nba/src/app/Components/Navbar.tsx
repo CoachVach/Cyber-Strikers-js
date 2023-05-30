@@ -31,9 +31,7 @@ function CustomNavbar({ cartItems,removeFromCart }: CustomNavbarProps) {
                 Cart
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item onClick={toggleCart}>Toggle Cart</Dropdown.Item>
                 <Dropdown.Item>
-                  {/* Render the Carrito component here */}
                   <Carrito cartItems={cartItems} removeFromCart={removeFromCart} />
                 </Dropdown.Item>
               </Dropdown.Menu>

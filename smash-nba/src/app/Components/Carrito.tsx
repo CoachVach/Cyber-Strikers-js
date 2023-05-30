@@ -3,6 +3,7 @@ import Item from './Item'
 import React from 'react';
 import axios from 'axios';
 import { Button, Card, Container } from 'react-bootstrap';
+import '../StyleComponents/Carrito.css';
 
 type CarritoProps = {
   cartItems: Item[];
@@ -44,22 +45,26 @@ const Carrito: React.FC<CarritoProps> = ({ cartItems, removeFromCart }) => {
   };
 
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.costo, 0);
+    return cartItems.reduce((total, item) => total + (item.costo*item.cant_producto), 0);
   };
 
   return (
     <Container>
-      <h2>Shopping Cart</h2>
+      <img src="/images/cart.png" alt="Image" className="img-fluid" />
       {cartItems.map((item) => (
-        <Card key={item.id} className="mb-3">
-          <Card.Body>
-            <Card.Title>{item.descripcion}</Card.Title>
-            <Card.Text>Costo: {item.costo}</Card.Text>
-            <Button variant="danger" onClick={() => handleRemove(item)}>Delete</Button>
-          </Card.Body>
-        </Card>
+        <Card key={item.id} className="card mb-3">
+        <Card.Body>
+          <div className="card-header">
+            <Button variant="danger" onClick={() => handleRemove(item)} className="delete-button">-</Button>
+          </div>
+          <Card.Title>{item.jugador.nombre} {item.jugador.apellido}</Card.Title>
+          <Card.Text>{item.jugador.equipo.ciudad} {item.jugador.equipo.nombre}</Card.Text>
+          <Card.Text className="costo">{item.costo}$</Card.Text>
+          <Card.Text className="cant-producto">{item.cant_producto}</Card.Text>
+        </Card.Body>
+      </Card>
       ))}
-      <Button variant="primary" onClick={realizarPedido}>Realizar Pedido</Button>
+      <Button variant="primary" onClick={realizarPedido} className="button">Realizar Pedido</Button>
     </Container>
   );
 };

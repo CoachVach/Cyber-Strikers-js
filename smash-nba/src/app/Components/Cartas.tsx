@@ -18,7 +18,6 @@ const ItemListComponent: React.FC = () => {
         const apiData = await dataCartas();
         setItems(apiData);
       } catch (error) {
-        // Handle error
       }
     };
 
@@ -26,9 +25,18 @@ const ItemListComponent: React.FC = () => {
   }, []);
 
   const addToCart = (item: Item, quantity: number) => {
-    item.cant_producto = quantity;
-    setCartItems((prevItems) => [...prevItems, item]);
+    const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
+  
+    if (!existingItem) {
+      item.cant_producto = quantity;
+      setCartItems((prevItems) => [...prevItems, item]);
+      alert("Carta añadida al Carrito (=")
+    }else{
+      alert("Ya tienes esta carta en el Carrito.")
+    }
+    
   };
+  
 
   const removeFromCart = (item: Item) => {
     setCartItems((prevItems) => prevItems.filter((cartItem) => cartItem.id !== item.id));
