@@ -34,8 +34,8 @@ const CartaContainer: React.FC<ItemProps> = ({ item, addToCart }) => {
   const { id, descripcion, costo, estadistica, categoria, jugador } = item;
 
   return (
-    <div id="body">
-      <div id="card">
+    <div id="body" className={categoria}>
+      <div id="card" >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 267.3 427.3">
           <clipPath id="svgPath">
             <path
@@ -96,7 +96,7 @@ const CartaContainer: React.FC<ItemProps> = ({ item, addToCart }) => {
           </div>
         </div>
       </div>
-      <button onClick={() => addToCart(item)}>Add to Cart</button>
+      <button onClick={() => addToCart(item)}></button>
     </div>
     
   );
