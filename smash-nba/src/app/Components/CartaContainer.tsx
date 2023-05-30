@@ -1,38 +1,20 @@
-import React, { useEffect } from 'react';
-import { Card } from 'react-bootstrap';
-import '../StyleComponents/CartaContainer.scss';
-
-export interface Item {
-  id: number;
-  descripcion: string;
-  costo: number;
-  estadistica: number;
-  categoria: string;
-  jugador: {
-    id: number;
-    nombre: string;
-    apellido: string;
-    nacionalidad: string;
-    Nro_Camiseta: number;
-    posicion: string;
-    foto: string;
-    equipo: {
-      id: number;
-      ciudad: string;
-      nombre: string;
-      logo: string;
-    };
-  };
-}
+"use client";
+import React, { useState } from 'react';
+import Item from './Item'
 
 type ItemProps = {
   item: Item;
-  addToCart: (item: Item) => void;
+  addToCart: (item: Item, quantity: number) => void;
 };
 
 const CartaContainer: React.FC<ItemProps> = ({ item, addToCart }) => {
+  const [quantity, setQuantity] = useState(1);
   const { id, descripcion, costo, estadistica, categoria, jugador } = item;
-
+  const handleAddToCart = () => {
+    if(Number.isNaN(quantity))
+      setQuantity(1);
+    addToCart(item, quantity);
+  };
   return (
     <div id="body">
       <div id="card">
@@ -96,9 +78,19 @@ const CartaContainer: React.FC<ItemProps> = ({ item, addToCart }) => {
           </div>
         </div>
       </div>
-      <button onClick={() => addToCart(item)}>Add to Cart</button>
+      <button onClick={handleAddToCart}>Add to Cart</button>
+      <input
+        type="number"
+        value={quantity}
+        min={1}
+        onChange={(e) => {
+          const inputValue = parseInt(e.target.value);
+          if (!isNaN(inputValue)) {
+            setQuantity(inputValue);
+          }
+        }}
+      />
     </div>
-    
   );
 };
 

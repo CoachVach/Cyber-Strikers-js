@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Container, Dropdown } from 'react-bootstrap';
 import Carrito from './Carrito';
-import {Item} from './CartaContainer';
+import Item from './Item'
 
 type CustomNavbarProps = {
   cartItems: Item[];

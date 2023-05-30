@@ -1,8 +1,8 @@
-// _app.tsx
-
+"use client";
 import React from 'react';
 import { AppProps } from 'next/app';
 import '../styles/globals.css';
+import '../StyleComponents/CartaContainer.scss';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;

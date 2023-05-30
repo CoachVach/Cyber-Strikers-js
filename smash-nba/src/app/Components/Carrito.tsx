@@ -1,6 +1,8 @@
-import { Item } from './CartaContainer';
+"use client";
+import Item from './Item'
 import React from 'react';
 import axios from 'axios';
+import { Button, Card, Container } from 'react-bootstrap';
 
 type CarritoProps = {
   cartItems: Item[];
@@ -20,14 +22,17 @@ const Carrito: React.FC<CarritoProps> = ({ cartItems, removeFromCart }) => {
         fecha_entrega: new Date().toISOString(),
         monto_total: calculateTotal(),
         user_id: 26, // Replace with the actual user ID
-        cartas: cartItems.map(item => item.id),
+        cartas: cartItems.map(item => ({
+          id: item.id,
+          cant_producto: item.cant_producto
+        })),
       };
-
+      console.log(pedidoData)
       const response = await axios.post('https://cyber-strikers-coachvach.vercel.app/rest/cargarPedido', pedidoData);
-      
+
       if (response.status === 201) {
         console.log('Pedido creado correctamente:', response.data.message);
-        // Perform any additional actions after creating the pedido
+        alert('Pedido creado correctamente.');
       } else {
         console.error('Error al crear el pedido:', response.status);
         // Handle errors if the response is not successful
@@ -43,17 +48,19 @@ const Carrito: React.FC<CarritoProps> = ({ cartItems, removeFromCart }) => {
   };
 
   return (
-    <div>
+    <Container>
       <h2>Shopping Cart</h2>
       {cartItems.map((item) => (
-        <div key={item.id}>
-          <h3>{item.descripcion}</h3>
-          <p>Costo: {item.costo}</p>
-          <button onClick={() => handleRemove(item)}>Delete</button>
-        </div>
+        <Card key={item.id} className="mb-3">
+          <Card.Body>
+            <Card.Title>{item.descripcion}</Card.Title>
+            <Card.Text>Costo: {item.costo}</Card.Text>
+            <Button variant="danger" onClick={() => handleRemove(item)}>Delete</Button>
+          </Card.Body>
+        </Card>
       ))}
-      <button onClick={realizarPedido}>Realizar Pedido</button>
-    </div>
+      <Button variant="primary" onClick={realizarPedido}>Realizar Pedido</Button>
+    </Container>
   );
 };
 

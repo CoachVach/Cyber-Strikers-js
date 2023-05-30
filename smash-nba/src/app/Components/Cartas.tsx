@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import CartaContainer, { Item } from './CartaContainer';
-import Carrito from './Carrito';
-import { dataCartas } from '../api';
+import CartaContainer from './CartaContainer';
+import Item from './Item'
+//import { dataCartas } from '../api';
 import CustomNavbar from './Navbar';
 
 
@@ -11,7 +11,7 @@ import CustomNavbar from './Navbar';
 const ItemListComponent: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [cartItems, setCartItems] = useState<Item[]>([]);
-
+/*
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,9 +23,10 @@ const ItemListComponent: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, []);*/
 
-  const addToCart = (item: Item) => {
+  const addToCart = (item: Item, quantity: number) => {
+    item.cant_producto = quantity;
     setCartItems((prevItems) => [...prevItems, item]);
   };
 

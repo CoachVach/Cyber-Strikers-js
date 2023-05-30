@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import  Link  from 'next/link';
 
 const HomeComponent: React.FC = () => {
   return (
@@ -19,7 +20,7 @@ const HomeComponent: React.FC = () => {
               Welcome to a world where legends live on. Start your journey today!
             </p>
             <div className="d-flex justify-content-center">
-              <Button variant="light">Explore Cards</Button>
+              <Link href='cartas'>Explore Cards</Link>
             </div>
           </div>
         </Col>

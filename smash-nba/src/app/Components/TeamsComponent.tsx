@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
-import {dataEquipos} from '../api';
+//import {dataEquipos} from '../api';
 
 interface Item {
   id: number;
@@ -16,7 +16,7 @@ interface Item {
 const TeamsComponent: React.FC = () => {
   const [data, setData] = useState<Item[] | null>(null);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
         const apiData: Item[] = await dataEquipos();
@@ -27,7 +27,7 @@ const TeamsComponent: React.FC = () => {
     };
 
     fetchDataFromApi();
-  }, []);
+  }, []);*/
 
   // Render your component using the fetched data
   return (
