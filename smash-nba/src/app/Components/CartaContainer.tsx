@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Item from './Item'
+import '../StyleComponents/CartaContainer.scss';
 
 type ItemProps = {
   item: Item;
@@ -78,7 +79,7 @@ const CartaContainer: React.FC<ItemProps> = ({ item, addToCart }) => {
           </div>
         </div>
       </div>
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      <button onClick={handleAddToCart}></button>
       <input
         type="number"
         value={quantity}

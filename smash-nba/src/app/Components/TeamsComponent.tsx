@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import {dataEquipos} from '../api';
-import { Link } from 'react-router-dom';
+import  Link  from 'next/link';
 
 interface Item {
   id: number;
@@ -37,7 +37,7 @@ const TeamsComponent: React.FC = () => {
         <Carousel>
           {data.map((item) => (
             <Carousel.Item key={item.id}>
-              <Link to={`/cartasEquipo/${encodeURIComponent(item.nombre)}`}>
+              <Link href={`/cartasEquipo/${encodeURIComponent(item.nombre)}`}>
                 <img src={item.logo} alt={item.nombre} />
               </Link>
               <Carousel.Caption>

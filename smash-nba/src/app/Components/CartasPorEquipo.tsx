@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import CartaContainer, { Item } from './CartaContainer';
-import Carrito from './Carrito';
+import CartaContainer from './CartaContainer';
+import Item from './Item';
 import { dataCartasPorEquipo } from '../api';
 import CustomNavbar from './Navbar';
 
