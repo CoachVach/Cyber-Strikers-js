@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
-//import {dataEquipos} from '../api';
+import {dataEquipos} from '../api';
+import { Link } from 'react-router-dom';
 
 interface Item {
   id: number;
@@ -16,7 +17,7 @@ interface Item {
 const TeamsComponent: React.FC = () => {
   const [data, setData] = useState<Item[] | null>(null);
 
-  /*useEffect(() => {
+  useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
         const apiData: Item[] = await dataEquipos();
@@ -27,7 +28,7 @@ const TeamsComponent: React.FC = () => {
     };
 
     fetchDataFromApi();
-  }, []);*/
+  }, []);
 
   // Render your component using the fetched data
   return (
@@ -36,7 +37,9 @@ const TeamsComponent: React.FC = () => {
         <Carousel>
           {data.map((item) => (
             <Carousel.Item key={item.id}>
-              <img src={item.logo} alt={item.nombre} />
+              <Link to={`/cartasEquipo/${encodeURIComponent(item.nombre)}`}>
+                <img src={item.logo} alt={item.nombre} />
+              </Link>
               <Carousel.Caption>
                 <h3>{item.nombre}</h3>
                 <p>{item.ciudad}</p>
