@@ -67,31 +67,27 @@ const CartaContainer: React.FC<ItemProps> = ({ item }) => {
                 <ul>
                   <li>
                     <span>89</span>
-                    <span>pac</span>
+                    <span>MIN</span>
                   </li>
                   <li>
                     <span>94</span>
-                    <span>sho</span>
+                    <span>PO</span>
                   </li>
                   <li>
                     <span>81</span>
-                    <span>pas</span>
+                    <span>ASSI</span>
                   </li>
                 </ul>
               </div>
               <div>
                 <ul>
                   <li>
-                    <span>90</span>
-                    <span>dri</span>
+                    <span>10</span>
+                    <span>REB</span>
                   </li>
                   <li>
-                    <span>33</span>
-                    <span>def</span>
-                  </li>
-                  <li>
-                    <span>83</span>
-                    <span>phy</span>
+                    <span>2</span>
+                    <span>ST</span>
                   </li>
                 </ul>
               </div>
