@@ -6,7 +6,6 @@ import TeamsComponent from './Components/TeamsComponent';
 export default function Home() {
   return (
     <div>
-      <CustomNavbar />
       <div className="container">
         <Inicio/>
         <TeamsComponent />

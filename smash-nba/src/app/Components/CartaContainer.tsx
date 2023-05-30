@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import '../StyleComponents/CartaContainer.scss';
 
-interface Item {
+export interface Item {
   id: number;
   descripcion: string;
   costo: number;
@@ -27,9 +27,10 @@ interface Item {
 
 type ItemProps = {
   item: Item;
+  addToCart: (item: Item) => void;
 };
 
-const CartaContainer: React.FC<ItemProps> = ({ item }) => {
+const CartaContainer: React.FC<ItemProps> = ({ item, addToCart }) => {
   const { id, descripcion, costo, estadistica, categoria, jugador } = item;
 
   return (
@@ -95,7 +96,9 @@ const CartaContainer: React.FC<ItemProps> = ({ item }) => {
           </div>
         </div>
       </div>
+      <button onClick={() => addToCart(item)}>Add to Cart</button>
     </div>
+    
   );
 };
 
