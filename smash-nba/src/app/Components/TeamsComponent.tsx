@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
-import {dataEquipos} from '../api';
-import  Link  from 'next/link';
+import { dataEquipos } from '../api';
+import Link from 'next/link';
+import '../StyleComponents/Teams.css';
 
 interface Item {
   id: number;
@@ -34,19 +35,28 @@ const TeamsComponent: React.FC = () => {
   return (
     <div>
       {data ? (
-        <Carousel>
-          {data.map((item) => (
-            <Carousel.Item key={item.id}>
-              <Link href={`/cartasEquipo/${encodeURIComponent(item.nombre)}`}>
-                <img src={item.logo} alt={item.nombre} />
+        <>
+          <div className="d-flex flex-wrap justify-content-center mt-4">
+            {data.map((item) => (
+              <Link href={`/cartasEquipo/${encodeURIComponent(item.nombre)}`} key={item.id}>
+                <img src={item.logo} alt={item.nombre} className="team-logo" />
               </Link>
-              <Carousel.Caption>
-                <h3>{item.nombre}</h3>
-                <p>{item.ciudad}</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </Carousel>
+            ))}
+          </div>
+          <Carousel>
+            {data.map((item) => (
+              <Carousel.Item key={item.id}>
+                <Link href={`/cartasEquipo/${encodeURIComponent(item.nombre)}`}>
+                  <img src={item.logo} alt={item.nombre} />
+                </Link>
+                <Carousel.Caption>
+                  <h3>{item.nombre}</h3>
+                  <p>{item.ciudad}</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </>
       ) : (
         <p>Loading...</p>
       )}
@@ -55,3 +65,4 @@ const TeamsComponent: React.FC = () => {
 };
 
 export default TeamsComponent;
+

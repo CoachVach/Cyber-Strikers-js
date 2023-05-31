@@ -3,19 +3,22 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import CartaContainer from './CartaContainer';
 import Item from './Item'
-import { dataCartas } from '../api';
 import CustomNavbar from './Navbar';
 
+type ItemProps = {
+  apiCall: (name:string) => Promise<Item[]>;
+  name: string;
+};
 
-
-const ItemListComponent: React.FC = () => {
+const ItemListComponent: React.FC<ItemProps> = ({apiCall,name}) => {
   const [items, setItems] = useState<Item[]>([]);
   const [cartItems, setCartItems] = useState<Item[]>([]);
-
+  console.log("HOLA");
+  console.log(name);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiData = await dataCartas();
+        const apiData = await apiCall(name);
         setItems(apiData);
       } catch (error) {
       }

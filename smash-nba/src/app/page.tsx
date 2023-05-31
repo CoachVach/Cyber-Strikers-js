@@ -7,6 +7,7 @@ export default function Home() {
     <div>
       <div className="container">
         <Inicio/>
+        <TeamsComponent/>
       </div>
     </div>
   );
