@@ -1,7 +1,9 @@
+"use client";
 import React, { useEffect, useState } from 'react';
 import { dataCartasPorEquipo } from '../../api';
 import Item from '@/app/Components/Item';
 import ItemListComponent from '@/app/Components/Cartas';
+import { usePathname } from 'next/navigation';
 
 type Params = {
     params:{
@@ -9,12 +11,16 @@ type Params = {
     }
 }
 
-export default  function TeamPage({params:{nombre}}:Params){
-  nombre="Lakers"
+export default  function TeamPage(){
+  //Pathname es recomendado usarlo con "use client", para obtener parametros de la url:
+  const pathname = usePathname();
+  const pathParts = pathname.split('/'); // Split the pathname by '/'
+  const teamName = pathParts[pathParts.length - 1]; // Get the last part of the path
+
 
   return (
     <div>
-    <ItemListComponent apiCall={dataCartasPorEquipo} name={nombre}/>
+    <ItemListComponent apiCall={dataCartasPorEquipo} name={teamName}/>
     </div>
   );
 };
