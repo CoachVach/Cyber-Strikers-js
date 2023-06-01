@@ -13,8 +13,19 @@ type ItemProps = {
 const ItemListComponent: React.FC<ItemProps> = ({apiCall,name}) => {
   const [items, setItems] = useState<Item[]>([]);
   const [cartItems, setCartItems] = useState<Item[]>([]);
-  console.log("HOLA");
-  console.log(name);
+
+  // Cargar elementos del carrito desde localStorage al cargar la página
+  useEffect(() => {
+    const savedCartItems = localStorage.getItem('cartItems');
+    if (savedCartItems) {
+      setCartItems(JSON.parse(savedCartItems));
+    }
+  }, []);
+
+  // Guardar elementos del carrito en localStorage al actualizar el carrito
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -48,7 +59,7 @@ const ItemListComponent: React.FC<ItemProps> = ({apiCall,name}) => {
   return (
     <div>
       <CustomNavbar cartItems={cartItems} removeFromCart={removeFromCart} />
-      <Row xs={1} sm={2} md={4} lg={4} xl={4} className="g-4">
+      <Row xs={1} sm={2} md={3} lg={3} xl={3} className="g-3">
         {items.map((item) => (
           <Col key={item.id}>
             <CartaContainer item={item} addToCart={addToCart} />

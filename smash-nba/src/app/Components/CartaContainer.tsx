@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Item from './Item'
 import '../StyleComponents/CartaContainer.scss';
+import Popup from './PopUp';
 
 type ItemProps = {
   item: Item;
@@ -10,15 +11,77 @@ type ItemProps = {
 
 const CartaContainer: React.FC<ItemProps> = ({ item, addToCart }) => {
   const [quantity, setQuantity] = useState(1);
+  const [showPopup, setShowPopup] = useState(false);
+  const [isCardTopVisible, setCardTopVisible] = useState(true);
   const { id, descripcion, costo, estadistica, categoria, jugador } = item;
+  const countryCode = {
+    'Guinea': 'GN',
+    'Turkey': 'TR',
+    'Nigeria': 'NG',
+    'Switzerland': 'CH',
+    'New Zealand': 'NZ',
+    'Italy': 'IT',
+    'Cameroon': 'CM',
+    'Czech Republic': 'CZ',
+    'USA': 'US',
+    'St. Lucia': 'LC',
+    'United Kingdom': 'UK',
+    'Montenegro': 'ME',
+    'Brazil': 'BR',
+    'Austria': 'AT',
+    'Dominican Republic': 'DO',
+    'Australia': 'AU',
+    'Germany': 'DE',
+    'Serbia': 'RS',
+    'Macedonia': 'MK',
+    'Canada': 'CA',
+    'Angola': 'AO',
+    'Portugal': 'PT',
+    'Finland': 'FI',
+    'Ukraine': 'UA',
+    'Lithuania': 'LT',
+    'Spain': 'ES',
+    'Croatia': 'HR',
+    'Latvia': 'LV',
+    'England': 'GB',
+    'Sudan': 'SD',
+    'Congo': 'CG',
+    'Slovenia': 'SI',
+    'Greece': 'GR',
+    'Bahamas': 'BS',
+    'Georgia': 'GE',
+    'Belgium': 'BE',
+    'France': 'FR',
+    'Israel': 'IL',
+    'Senegal': 'SN',
+    'Yugoslavia': 'YU',
+    'Japan': 'JP',
+    'Bosnia and Herzegovina': 'BA',
+    'Jamaica': 'JM',
+    'DR Congo': 'CD',
+  };
+
+  const getCountryFlagUrl = (country: string) => {
+    const countryShortCode = countryCode[country]
+    return `https://flagsapi.com/${countryShortCode}/shiny/64.png`;
+  };
   const handleAddToCart = () => {
     if(Number.isNaN(quantity))
       setQuantity(1);
     addToCart(item, quantity);
   };
+
+  const handleOpenPopup = () => {
+    setShowPopup(true);
+    if(isCardTopVisible)
+      setCardTopVisible(false);
+    else  
+      setCardTopVisible(true);
+  };
+
   return (
     <div id="body" className={categoria}>
-      <div id="card" >
+      <div id="card" onClick={handleOpenPopup}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 267.3 427.3">
           <clipPath id="svgPath">
             <path
@@ -28,12 +91,13 @@ const CartaContainer: React.FC<ItemProps> = ({ item, addToCart }) => {
           </clipPath>
         </svg>
         <div id="card-inner">
+        {isCardTopVisible ? (
           <div id="card-top">
             <div className="info">
               <div className="value">{estadistica}</div>
               <div className="position">{jugador.posicion}</div>
               <div className="country">
-                  <img className= "imagenNacionalidad" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/214624/portugal.png" alt="Imagen de la nacionalidad" /> 
+                  <img className= "imagenNacionalidad" src={getCountryFlagUrl(jugador.nacionalidad)} alt="Imagen de la nacionalidad" /> 
               </div>
               <div className="club">
                   <img className= "imagenEquipo" src={jugador.equipo.logo} alt="Logo del equipo" />
@@ -44,6 +108,12 @@ const CartaContainer: React.FC<ItemProps> = ({ item, addToCart }) => {
             </div>
 
           </div>
+          ) : (
+            <div id="popup-text">
+              {/* Texto y botón para volver al estado anterior */}
+              <p>Texto del popup</p>
+            </div>
+          )}
           <div id="card-bottom">
             <div className="name">{jugador.nombre} {jugador.apellido}</div>
             <div className="stats">
@@ -79,7 +149,7 @@ const CartaContainer: React.FC<ItemProps> = ({ item, addToCart }) => {
           </div>
         </div>
       </div>
-      <button onClick={handleAddToCart}></button>
+      <button id="btnCompra" onClick={handleAddToCart}></button>
       <input
         type="number"
         value={quantity}

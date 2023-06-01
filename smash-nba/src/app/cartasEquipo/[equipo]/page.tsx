@@ -5,11 +5,6 @@ import Item from '@/app/Components/Item';
 import ItemListComponent from '@/app/Components/Cartas';
 import { usePathname } from 'next/navigation';
 
-type Params = {
-    params:{
-        nombre: string
-    }
-}
 
 export default  function TeamPage(){
   //Pathname es recomendado usarlo con "use client", para obtener parametros de la url:
