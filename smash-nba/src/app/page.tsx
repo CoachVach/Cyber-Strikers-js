@@ -4,7 +4,7 @@ import TeamsComponent from './Components/TeamsComponent';
 import CustomNavbar from './Components/Navbar';
 import Item from './Components/Item';
 import { useEffect, useState } from 'react';
-import './StyleComponents/Inicio.css';
+
 
 export default function Home() {
   const [cartItems, setCartItems] = useState<Item[]>([]);
