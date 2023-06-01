@@ -49,6 +49,7 @@ const Carrito: React.FC<CarritoProps> = ({ cartItems, removeFromCart }) => {
   };
 
   return (
+    <div className='container'>
     <Container>
       <img src="/images/cart.png" alt="Image" className="img-fluid" />
       {cartItems.map((item) => (
@@ -66,6 +67,7 @@ const Carrito: React.FC<CarritoProps> = ({ cartItems, removeFromCart }) => {
       ))}
       <Button variant="primary" onClick={realizarPedido} className="button">Realizar Pedido</Button>
     </Container>
+    </div>
   );
 };
 
