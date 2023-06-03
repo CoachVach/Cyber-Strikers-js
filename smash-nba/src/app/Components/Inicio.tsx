@@ -20,7 +20,12 @@ const HomeComponent: React.FC = () => {
               Welcome to a world where legends live on. Start your journey today!
             </p>
             <div className="d-flex justify-content-center">
-              <Link href='cartas'>Explore Cards</Link>
+            <Link href={`/cartasCategoria/${encodeURIComponent("Bronce")}`}> Cartas de Bronce 
+            </Link>
+            <Link href={`/cartasCategoria/${encodeURIComponent("Oro")}`}> Cartas de Oro 
+            </Link>
+            <Link href={`/cartasCategoria/${encodeURIComponent("Plata")}`}> Cartas de Bronce 
+            </Link>
             </div>
           </div>
         </Col>

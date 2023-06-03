@@ -43,19 +43,6 @@ const TeamsComponent: React.FC = () => {
               </Link>
             ))}
           </div>
-          <Carousel>
-            {data.map((item) => (
-              <Carousel.Item key={item.id}>
-                <Link href={`/cartasEquipo/${encodeURIComponent(item.nombre)}`}>
-                  <img src={item.logo} alt={item.nombre} />
-                </Link>
-                <Carousel.Caption>
-                  <h3>{item.nombre}</h3>
-                  <p>{item.ciudad}</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-            ))}
-          </Carousel>
         </>
       ) : (
         <p>Loading...</p>

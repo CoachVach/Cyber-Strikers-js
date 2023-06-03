@@ -4,16 +4,20 @@ import { Row, Col } from 'react-bootstrap';
 import CartaContainer from './CartaContainer';
 import Item from './Item'
 import CustomNavbar from './Navbar';
+import Loader from './Loader';
 
 type ItemProps = {
-  apiCall: (name:string) => Promise<Item[]>;
+  apiCall: (...args:any[]) => Promise<Item[]>;
   name: string;
 };
 
 const ItemListComponent: React.FC<ItemProps> = ({apiCall,name}) => {
   const [items, setItems] = useState<Item[]>([]);
   const [cartItems, setCartItems] = useState<Item[]>([]);
-
+  //Contante de paginas
+  const [page, setPage] = useState(1);
+  //Logo loading
+  const [loading, setLoading] = useState(true);
   // Cargar elementos del carrito desde localStorage al cargar la página
   useEffect(() => {
     const savedCartItems = localStorage.getItem('cartItems');
@@ -26,17 +30,37 @@ const ItemListComponent: React.FC<ItemProps> = ({apiCall,name}) => {
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiData = await apiCall(name);
-        setItems(apiData);
+        const apiData = await apiCall(name, page, 6);
+        setItems((prev) =>{
+          return [...prev, ...apiData]
+        });
+        setLoading(false);
       } catch (error) {
       }
     };
-
     fetchData();
-  }, []);
+  }, [page]);
+
+  const handleScroll = () => {
+    console.log("Height:", document.documentElement.scrollHeight);
+    console.log("Top:", document.documentElement.scrollTop);
+    console.log("Window:", window.innerHeight);
+
+    if(window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
+      setPage(prev  => prev + 1)
+    }
+
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return() => window.removeEventListener("scroll", handleScroll); 
+  },[])
 
   const addToCart = (item: Item, quantity: number) => {
     const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
@@ -65,6 +89,7 @@ const ItemListComponent: React.FC<ItemProps> = ({apiCall,name}) => {
             <CartaContainer item={item} addToCart={addToCart} />
           </Col>
         ))}
+        {loading && <Loader/>}
       </Row>
     </div>
   );
