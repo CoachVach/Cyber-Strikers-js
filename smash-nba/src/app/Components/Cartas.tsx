@@ -11,6 +11,55 @@ type ItemProps = {
   name: string;
 };
 
+const countryCode: { [key: string]: string } = {
+  'Guinea': 'GN',
+  'Turkey': 'TR',
+  'Nigeria': 'NG',
+  'Switzerland': 'CH',
+  'New Zealand': 'NZ',
+  'Italy': 'IT',
+  'Cameroon': 'CM',
+  'Czech Republic': 'CZ',
+  'USA': 'US',
+  'St. Lucia': 'LC',
+  'United Kingdom': 'UK',
+  'Montenegro': 'ME',
+  'Brazil': 'BR',
+  'Austria': 'AT',
+  'Dominican Republic': 'DO',
+  'Australia': 'AU',
+  'Germany': 'DE',
+  'Serbia': 'RS',
+  'Macedonia': 'MK',
+  'Canada': 'CA',
+  'Angola': 'AO',
+  'Portugal': 'PT',
+  'Finland': 'FI',
+  'Ukraine': 'UA',
+  'Lithuania': 'LT',
+  'Spain': 'ES',
+  'Croatia': 'HR',
+  'Latvia': 'LV',
+  'England': 'GB',
+  'Sudan': 'SD',
+  'Congo': 'CG',
+  'Slovenia': 'SI',
+  'Greece': 'GR',
+  'Bahamas': 'BS',
+  'Georgia': 'GE',
+  'Belgium': 'BE',
+  'France': 'FR',
+  'Israel': 'IL',
+  'Senegal': 'SN',
+  'Yugoslavia': 'YU',
+  'Japan': 'JP',
+  'Bosnia and Herzegovina': 'BA',
+  'Jamaica': 'JM',
+  'DR Congo': 'CD',
+};
+
+
+
 const ItemListComponent: React.FC<ItemProps> = ({apiCall,name}) => {
   const [items, setItems] = useState<Item[]>([]);
   const [cartItems, setCartItems] = useState<Item[]>([]);
@@ -18,6 +67,12 @@ const ItemListComponent: React.FC<ItemProps> = ({apiCall,name}) => {
   const [page, setPage] = useState(1);
   //Logo loading
   const [loading, setLoading] = useState(true);
+
+  const getCountryFlagUrl = (country: string) => {
+    const countryShortCode = countryCode[country]
+    return `https://flagsapi.com/${countryShortCode}/shiny/64.png`;
+  };
+
   // Cargar elementos del carrito desde localStorage al cargar la página
   useEffect(() => {
     const savedCartItems = localStorage.getItem('cartItems');
@@ -86,7 +141,7 @@ const ItemListComponent: React.FC<ItemProps> = ({apiCall,name}) => {
       <Row xs={1} sm={2} md={3} lg={3} xl={3} className="g-3">
         {items.map((item) => (
           <Col key={item.id}>
-            <CartaContainer item={item} addToCart={addToCart} />
+            <CartaContainer item={item} addToCart={addToCart} imgPais={getCountryFlagUrl(item.jugador.nacionalidad)} />
           </Col>
         ))}
         {loading && <Loader/>}

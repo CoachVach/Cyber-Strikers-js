@@ -1,10 +1,11 @@
 "use client";
-import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import  Link  from 'next/link';
 
 const HomeComponent: React.FC = () => {
+  
   return (
+  <div>
     <Container fluid>
       <Row className="h-100">
         <Col sm={6} className="d-flex align-items-center justify-content-center">
@@ -28,14 +29,15 @@ const HomeComponent: React.FC = () => {
             </Link>
             </div>
           </div>
-        </Col>
-        <Col sm={6} className="d-flex align-items-center justify-content-center">
-          <div className="max-height-50">
-            <img src="/images/inicio.png" alt="Image" className="img-fluid" />
-          </div>
-        </Col>
-      </Row>
-    </Container>
+          </Col>
+          <Col sm={6} className="d-flex align-items-center justify-content-center">
+            <div className="max-height-50">
+              <img src="/images/inicio.png" alt="Image" className="img-fluid" />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 
