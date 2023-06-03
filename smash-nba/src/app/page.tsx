@@ -5,7 +5,6 @@ import CustomNavbar from './Components/Navbar';
 import Item from './Components/Item';
 import { useEffect, useState } from 'react';
 
-
 export default function Home() {
   const [cartItems, setCartItems] = useState<Item[]>([]);
   
