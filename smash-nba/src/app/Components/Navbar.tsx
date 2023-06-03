@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Container, Dropdown } from 'react-bootstrap';
 import Carrito from './Carrito';
 import Item from './Item'
+import Link from 'next/link';
 
 type CustomNavbarProps = {
   cartItems: Item[];
@@ -23,15 +24,24 @@ function CustomNavbar({ cartItems,removeFromCart }: CustomNavbarProps) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Cartas</Nav.Link>
+            <Link href="/">Inicio</Link>
           </Nav>
           <Nav className="me-auto">
-            <Nav.Link href="/cartas">Cartas</Nav.Link>
+            <Dropdown>
+              <Dropdown.Toggle variant="secondary" id="categoria-dropdown-toggle">
+                Categorias
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item><Link href="/cartasCategoria/Oro">Oro</Link></Dropdown.Item>
+                <Dropdown.Item><Link href="/cartasCategoria/Plata">Plata</Link></Dropdown.Item>
+                <Dropdown.Item><Link href="/cartasCategoria/Bronce">Bronce</Link></Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Nav>
           <Nav className="me-auto">
             <Dropdown show={isCartOpen} onToggle={toggleCart}>
               <Dropdown.Toggle variant="success" id="cart-dropdown-toggle">
-                Cart
+                Carrito
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item>

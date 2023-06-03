@@ -9,6 +9,7 @@ import Loader from './Loader';
 type ItemProps = {
   apiCall: (...args:any[]) => Promise<Item[]>;
   name: string;
+  infiniteScroll:boolean;
 };
 
 const countryCode: { [key: string]: string } = {
@@ -60,7 +61,7 @@ const countryCode: { [key: string]: string } = {
 
 
 
-const ItemListComponent: React.FC<ItemProps> = ({apiCall,name}) => {
+const ItemListComponent: React.FC<ItemProps> = ({apiCall,name,infiniteScroll}) => {
   const [items, setItems] = useState<Item[]>([]);
   const [cartItems, setCartItems] = useState<Item[]>([]);
   //Contante de paginas
@@ -110,12 +111,13 @@ const ItemListComponent: React.FC<ItemProps> = ({apiCall,name}) => {
     }
 
   }
+  if(infiniteScroll){
+    useEffect(() => {
+      window.addEventListener("scroll", handleScroll);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return() => window.removeEventListener("scroll", handleScroll); 
-  },[])
+      return() => window.removeEventListener("scroll", handleScroll); 
+    },[])
+  }
 
   const addToCart = (item: Item, quantity: number) => {
     const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);

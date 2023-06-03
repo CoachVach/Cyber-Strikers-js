@@ -12,7 +12,7 @@ export default function cartas(){
 
   return (
     <div>
-      <Cartas apiCall={dataPorCategoria} name ={categoria}/>
+      <Cartas apiCall={dataPorCategoria} name ={categoria} infiniteScroll={true}/>
     </div>
   );
 }

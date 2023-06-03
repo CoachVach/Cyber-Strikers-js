@@ -15,7 +15,7 @@ export default  function TeamPage(){
 
   return (
     <div>
-    <ItemListComponent apiCall={dataCartasPorEquipo} name={teamName}/>
+    <ItemListComponent apiCall={dataCartasPorEquipo} name={teamName} infiniteScroll={false}/>
     </div>
   );
 };
