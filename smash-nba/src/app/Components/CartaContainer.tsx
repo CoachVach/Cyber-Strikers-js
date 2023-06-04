@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Item from './Item'
-import '../StyleComponents/CartaContainer.scss';
+import '../StyleComponents/CartaContainer.css';
 
 type ItemProps = {
   item: Item;
