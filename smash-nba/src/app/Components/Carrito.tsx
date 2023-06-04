@@ -23,8 +23,7 @@ const Carrito: React.FC<CarritoProps> = ({ cartItems, removeFromCart }) => {
         const pedidoData = {
           estado: 'Pendiente',
           fecha_pedido: new Date().toISOString(),
-          fecha_entrega: new Date().toISOString(),
-          monto_total: 0, //It's going to be calculated in backend 
+          fecha_entrega: new Date().toISOString(), 
           user_id: 26, // Replace with the actual user ID
           cartas: cartItems.map(item => ({
             id: item.id,

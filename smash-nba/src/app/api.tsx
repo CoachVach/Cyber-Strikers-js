@@ -1,7 +1,5 @@
 "use client";
 import axios from 'axios';
-import { NumberLiteralType } from 'typescript';
-
 export const dataEquipos = async () => {
   try {
     const response = await axios.get('https://cyber-strikers-coachvach.vercel.app/rest/equipos');

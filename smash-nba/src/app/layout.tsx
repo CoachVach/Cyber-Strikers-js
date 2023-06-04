@@ -1,5 +1,4 @@
 "use client"
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -13,6 +12,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <title>SMASH NBA</title>
+        <link rel="icon" href="/images/logo.png"/>
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )

@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { dataCartasPorEquipo } from '../../api';
-import Item from '@/app/Components/Item';
 import ItemListComponent from '@/app/Components/Cartas';
 import { usePathname } from 'next/navigation';
 

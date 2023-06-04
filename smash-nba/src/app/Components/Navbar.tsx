@@ -20,21 +20,18 @@ function CustomNavbar({ cartItems,removeFromCart }: CustomNavbarProps) {
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
-        <Navbar.Brand href="">SMASH NBA</Navbar.Brand>
+        <Navbar.Brand as={Link} href="/">SMASH NBA</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Link href="/">Inicio</Link>
-          </Nav>
           <Nav className="me-auto">
             <Dropdown>
               <Dropdown.Toggle variant="secondary" id="categoria-dropdown-toggle">
                 Categorias
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item><Link href="/cartasCategoria/Oro">Oro</Link></Dropdown.Item>
-                <Dropdown.Item><Link href="/cartasCategoria/Plata">Plata</Link></Dropdown.Item>
-                <Dropdown.Item><Link href="/cartasCategoria/Bronce">Bronce</Link></Dropdown.Item>
+                <Dropdown.Item as={Link} href="/cartasCategoria/Oro">Oro</Dropdown.Item>
+                <Dropdown.Item as={Link} href="/cartasCategoria/Plata">Plata</Dropdown.Item>
+                <Dropdown.Item as={Link} href="/cartasCategoria/Bronce">Bronce</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
