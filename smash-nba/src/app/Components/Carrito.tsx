@@ -24,7 +24,7 @@ const Carrito: React.FC<CarritoProps> = ({ cartItems, removeFromCart }) => {
           estado: 'Pendiente',
           fecha_pedido: new Date().toISOString(),
           fecha_entrega: new Date().toISOString(),
-          monto_total: calculateTotal(),
+          monto_total: 0, //It's going to be calculated in backend 
           user_id: 26, // Replace with the actual user ID
           cartas: cartItems.map(item => ({
             id: item.id,
@@ -47,10 +47,6 @@ const Carrito: React.FC<CarritoProps> = ({ cartItems, removeFromCart }) => {
       console.error('Error en la solicitud:', error);
       // Handle errors if an error occurs during the request
     }
-  };
-
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.costo * item.cant_producto, 0);
   };
 
   return (

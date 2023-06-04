@@ -103,6 +103,7 @@ const CartaContainer: React.FC<ItemProps> = ({ item, addToCart, imgPais }) => {
       </div>
       <button id="btnCompra" onClick={handleAddToCart}></button>
       <input
+        id= {`cantCarta${id}`} 
         type="number"
         value={quantity}
         min={1}

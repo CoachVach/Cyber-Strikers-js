@@ -102,12 +102,9 @@ const ItemListComponent: React.FC<ItemProps> = ({apiCall,name,infiniteScroll}) =
   }, [page]);
 
   const handleScroll = () => {
-    console.log("Height:", document.documentElement.scrollHeight);
-    console.log("Top:", document.documentElement.scrollTop);
-    console.log("Window:", window.innerHeight);
-
     if(window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
-      setPage(prev  => prev + 1)
+      setLoading(true);
+      setPage(prev  => prev + 1);
     }
 
   }
@@ -146,8 +143,8 @@ const ItemListComponent: React.FC<ItemProps> = ({apiCall,name,infiniteScroll}) =
             <CartaContainer item={item} addToCart={addToCart} imgPais={getCountryFlagUrl(item.jugador.nacionalidad)} />
           </Col>
         ))}
-        {loading && <Loader/>}
       </Row>
+      {loading && <Loader/>}
     </div>
   );
 };
