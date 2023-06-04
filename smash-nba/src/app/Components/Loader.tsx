@@ -3,7 +3,7 @@ import '../StyleComponents/LoaderStyle.css';
 
 const Loader = () => {
   return (
-    <div id="lds-roller">
+    <div className="lds-roller">
       <div></div>
       <div></div>
       <div></div>
