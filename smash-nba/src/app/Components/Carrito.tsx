@@ -31,7 +31,6 @@ const Carrito: React.FC<CarritoProps> = ({ cartItems, removeFromCart }) => {
           })),
         };
 
-        console.log(pedidoData);
         const response = await axios.post('https://cyber-strikers-coachvach.vercel.app/rest/cargarPedido', pedidoData);
 
         if (response.status === 201) {

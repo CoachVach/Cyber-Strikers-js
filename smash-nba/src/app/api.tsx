@@ -22,9 +22,7 @@ export const dataCartas = async () => {
 
   export const dataCartasPorEquipo = async (nombreEquipo:String|null) => {
     try {
-      console.log(nombreEquipo)
       const response = await axios.get('https://cyber-strikers-coachvach.vercel.app/rest/cartasPorEquipoPorNombre/'+nombreEquipo);
-      console.log(response)
       return response.data;
     } catch (error) {
       console.error('Error fetching data:', error);
